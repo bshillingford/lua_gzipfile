@@ -5,6 +5,11 @@ files directly. Useful for text or very large files.
 Implemented as an FFI wrapper for zlib, including wrappers for C `FILE` 
 functions like `fscanf` and `fwrite`. More can be easily added.
 
+Install:
+```
+luarocks install https://raw.githubusercontent.com/bshillingford/lua_gzipfile/master/gzfile-scm-1.rockspec
+```
+
 ## Example:
 Read 200 floats from a gzipped file directly into a torch tensor:
 ```lua
