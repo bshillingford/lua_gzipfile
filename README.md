@@ -1,13 +1,15 @@
+# gzfile
 Conveniently (and with decent performance) read and write data from `gzip` 
 files directly. Useful for text or very large files.
 
 Implemented as an FFI wrapper for zlib, including wrappers for C `FILE` 
 functions like `fscanf` and `fwrite`. More can be easily added.
 
-**Example**: read 200 floats from a gzipped file directly into a torch tensor:
+## Example:
+Read 200 floats from a gzipped file directly into a torch tensor:
 ```lua
 require 'torch'
-local GZFile = require 'GZFile'
+local GZFile = require 'gzfile.GZFile'
 
 local tensor = torch.FloatTensor(200)
 local f = GZFile('floats.gz', 'rb')
@@ -20,7 +22,7 @@ similar orders of magnitude will often results in repeated byte patterns.
 
 To access the underlying `FILE*` handle, use the `handle` property of `GZFile`.
 
-**Functions implemented:**
+## Functions implemented:
 
   * Constructor: `file = GZFile(filename, mode)`
     Opens the file for reading or writing using the given mode.
@@ -49,6 +51,6 @@ To access the underlying `FILE*` handle, use the `handle` property of `GZFile`.
     Returns new position from ftell.
   * `:getc()`
   * `:scanf(fmt, typestring)`
-    Calls fscanf, but only for reading a single field e.g. %s.
+    Calls fscanf, but only for reading a single field e.g. `%s`.
     Allocates memory automatically, this memory will be gc'd by lua.
-    Typestring examples: 'float[1]', 'uint8_t[1]', 'char[16]'.
+    Typestring examples: `'float[1]'`, `'uint8_t[1]'`, `'char[16]'`.
